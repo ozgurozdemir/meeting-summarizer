@@ -1,0 +1,5 @@
+{
+    "model": "openai/whisper-large-v3", 
+    "device": "cuda:0", 
+    "language": "turkish"
+}
