@@ -1,7 +1,7 @@
-import json
+from transcriber import Transcriber, AudioData
 from config import TranscriberConfig
-from transcriber import Transcriber
-import soundfile as sf 
+import librosa
+import json
 
 with open("config.json", "r") as f:
     config = json.load(f)
@@ -14,8 +14,13 @@ except Exception as e:
     exit(1)
 
 if __name__ == "__main__":
-    data, sampling_rate = librosa.load("test.m4a")
-    result = transcriber.transcribe(audio_path)
+    waveform, sampling_rate = librosa.load("test.m4a")
+
+    data = AudioData = {
+        "array": waveform,
+        "sample_rate": sampling_rate
+    }
+    result = transcriber.transcribe(data)
     
     with open("test.txt", "w") as f:
         f.write(result) # write the result to a file
